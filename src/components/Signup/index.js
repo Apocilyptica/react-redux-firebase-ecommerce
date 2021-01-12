@@ -1,19 +1,41 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { withRouter, useHistory } from "react-router-dom";
 import "./styles.scss";
-import { connect } from "react-redux";
-import { auth, handleUserProfile } from "../../firebase/utils";
+import { signUpUser, resetAllAuthForms } from "../../redux/User/user.actions";
 
 import AuthWrapper from "../AuthWrapper";
 import FormInput from "../Forms/FormInput";
 import Button from "../Forms/Button";
 
+const mapState = ({ user }) => ({
+  signUpSuccess: user.signUpSuccess,
+  signUpError: user.signUpError,
+});
+
 const Signup = (props) => {
+  const { signUpSuccess, signUpError } = useSelector(mapState);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (signUpSuccess) {
+      resetForm();
+      dispatch(resetAllAuthForms());
+      history.push("/");
+    }
+  }, [signUpSuccess]);
+
+  useEffect(() => {
+    if (Array.isArray(signUpError) && signUpError.length > 0) {
+      setErrors(signUpError);
+    }
+  }, [signUpError]);
 
   const resetForm = () => {
     setDisplayName("");
@@ -23,24 +45,16 @@ const Signup = (props) => {
     setErrors([]);
   };
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    if (password !== confirmPassword) {
-      const err = ["Password Don't match"];
-      setErrors(err);
-      return;
-    }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
-      await handleUserProfile(user, { displayName });
-      resetForm();
-      props.history.push("/");
-    } catch (err) {
-      // console.log(err);
-    }
+    dispatch(
+      signUpUser({
+        displayName,
+        email,
+        password,
+        confirmPassword,
+      })
+    );
   };
 
   const configAuthWrapper = {
