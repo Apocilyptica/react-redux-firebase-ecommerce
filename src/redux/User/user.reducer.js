@@ -2,54 +2,38 @@ import userTypes from "./user.types";
 
 const INITIAL_STATE = {
   currentUser: null,
-  signInSuccess: false,
-  signUpSuccess: false,
-  signUpError: [],
   resetPasswordSuccess: false,
-  resetPasswordError: [],
+  userErr: [],
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case userTypes.SET_CURRENT_USER:
-      return {
-        ...state,
-        currentUser: action.payload,
-      };
     case userTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
-        signInSuccess: action.payload,
+        currentUser: action.payload,
+        userErr: [],
       };
-    case userTypes.SIGN_UP_SUCCESS:
+
+    case userTypes.USER_ERROR:
       return {
         ...state,
-        signUpSuccess: action.payload,
+        userErr: action.payload,
       };
-    case userTypes.SIGN_UP_ERROR:
-      return {
-        ...state,
-        signUpError: action.payload,
-      };
+
     case userTypes.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
         resetPasswordSuccess: action.payload,
       };
-    case userTypes.RESET_PASSWORD_ERROR:
+
+    case userTypes.RESET_USER_STATE:
+    case userTypes.SIGN_OUT_USER_SUCCESS:
       return {
         ...state,
-        resetPasswordError: action.payload,
+        ...INITIAL_STATE,
       };
-    case userTypes.RESET_AUTH_FORMS:
-      return {
-        ...state,
-        signInSuccess: false,
-        signUpSuccess: false,
-        signUpError: [],
-        resetPasswordSuccess: false,
-        resetPasswordError: [],
-      };
+
     default:
       return state;
   }
