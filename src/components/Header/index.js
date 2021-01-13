@@ -30,9 +30,7 @@ const Header = (props) => {
         <nav>
           <ul>
             <li>
-              <Link exact to="/">
-                Home
-              </Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/search">Search</Link>

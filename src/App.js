@@ -38,7 +38,7 @@ const App = (props) => {
       <AdminToolbar />
       <Switch>
         <Route
-          exact={true}
+          exact
           path="/"
           render={() => (
             <HomepageLayout>
@@ -47,7 +47,16 @@ const App = (props) => {
           )}
         />
         <Route
+          exact
           path="/search"
+          render={() => (
+            <MainLayout>
+              <Search />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path="/search/:filterType"
           render={() => (
             <MainLayout>
               <Search />
