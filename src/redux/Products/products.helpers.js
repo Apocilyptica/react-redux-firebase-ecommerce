@@ -64,7 +64,7 @@ export const handleDeleteProduct = (documentID) => {
 export const handleFetchProduct = (productID) => {
   return new Promise((resolve, reject) => {
     firestore
-      .collection("product")
+      .collection("products")
       .doc(productID)
       .get()
       .then((snapshot) => {
