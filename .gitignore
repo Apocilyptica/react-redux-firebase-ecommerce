@@ -24,3 +24,9 @@ yarn-error.log*
 
 # firebase config file
 **/firebase/config.js
+
+# firebase functions
+/functions
+
+# strip config file
+**/stripe/config.js

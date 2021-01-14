@@ -1,13 +1,14 @@
 const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
+const stripe = require("stripe")("");
 
 const app = express();
 
 app.use(
-    cors({
-      origin: true,
-    }),
+  cors({
+    origin: true,
+  })
 );
 app.use(express.json());
 app.get("*", (req, res) => {

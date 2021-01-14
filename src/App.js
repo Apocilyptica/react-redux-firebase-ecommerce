@@ -27,6 +27,7 @@ import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import Payment from "./pages/Payment";
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -78,6 +79,14 @@ const App = (props) => {
           render={() => (
             <MainLayout>
               <Cart />
+            </MainLayout>
+          )}
+        />
+        <Route
+          path="/payment"
+          render={() => (
+            <MainLayout>
+              <Payment />
             </MainLayout>
           )}
         />
