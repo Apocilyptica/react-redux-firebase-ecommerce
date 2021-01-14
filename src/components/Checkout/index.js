@@ -57,7 +57,7 @@ const Checkout = () => {
                 <table align="right" border="0" cellPadding="10" cellSpacing="0">
                   <tr align="right">
                     <td>
-                      <h3>Total: ${total.toFixed(2)}</h3>
+                      <h3>Total: ${total}</h3>
                     </td>
                   </tr>
                   <tr>
@@ -68,7 +68,7 @@ const Checkout = () => {
                             <Button onClick={() => history.goBack()}>Continue Shopping</Button>
                           </td>
                           <td>
-                            <Button>Checkout</Button>
+                            <Button onClick={() => history.push("/payment")}>Checkout</Button>
                           </td>
                         </tr>
                       </tbody>

@@ -9,5 +9,5 @@ export const selectCartItemsCount = createSelector([selectCartItems], (cartItems
 );
 
 export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
-  cartItems.reduce((quantity, cartItem) => Math.ceil((quantity + cartItem.quantity * cartItem.productPrice) * 100) / 100, 0)
+  cartItems.reduce((quantity, cartItem) => Math.ceil((quantity + cartItem.quantity * cartItem.productPrice) * 100).toFixed(2) / 100, 0)
 );
