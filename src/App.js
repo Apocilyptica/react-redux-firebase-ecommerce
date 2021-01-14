@@ -27,6 +27,7 @@ import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
 import Payment from "./pages/Payment";
 
 const App = (props) => {
@@ -122,6 +123,16 @@ const App = (props) => {
             <WithAuth>
               <DashBoardLayout>
                 <Dashboard />
+              </DashBoardLayout>
+            </WithAuth>
+          )}
+        />
+        <Route
+          path="/order/:orderID"
+          render={() => (
+            <WithAuth>
+              <DashBoardLayout>
+                <Order />
               </DashBoardLayout>
             </WithAuth>
           )}
