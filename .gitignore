@@ -2,7 +2,7 @@
 
 # dependencies
 **/node_modules
-**/functions
+/stripePrivateKey
 /.pnp
 .pnp.js
 
