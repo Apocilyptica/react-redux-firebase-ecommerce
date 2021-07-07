@@ -1,11 +1,11 @@
 import cartTypes from "./cart.types";
 import { handleAddToCart, handleRemoveCartItem, handleReduceCartItem } from "./cart.utils";
 
-const INITAIL_STATE = {
+const INITIAL_STATE = {
   cartItems: [],
 };
 
-const cartReducer = (state = INITAIL_STATE, action) => {
+const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case cartTypes.ADD_TO_CART:
       return {
@@ -34,7 +34,7 @@ const cartReducer = (state = INITAIL_STATE, action) => {
     case cartTypes.CLEAR_CART:
       return {
         ...state,
-        ...INITAIL_STATE,
+        ...INITIAL_STATE,
       };
     default:
       return state;
